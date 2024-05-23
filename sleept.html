@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sleep Tracker</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(images/sleep1.jpg);
+            background-size: cover;
+        }
+        
+        #output-container {
+            border: 2px solid black;
+            padding: 20px;
+            text-align: center;
+            
+        }
+    </style>
+    <script>
+        function analyzeSleep() {
+            var hoursSlept = parseFloat(document.getElementById("hoursSlept").value);
+            
+            var recommendedMinHours = 7;
+            var recommendedMaxHours = 9;
+            
+            var difference = 0;
+            if (hoursSlept < recommendedMinHours) {
+                difference = recommendedMinHours - hoursSlept;
+                document.getElementById("recommendation").innerText = "You should increase your sleep time by " + difference.toFixed(1) + " hours.";
+            } else if (hoursSlept > recommendedMaxHours) {
+                difference = hoursSlept - recommendedMaxHours;
+                document.getElementById("recommendation").innerText = "You should decrease your sleep time by " + difference.toFixed(1) + " hours.";
+            } else {
+                document.getElementById("recommendation").innerText = "Your sleep duration is within the recommended range.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="output-container">
+            <b>
+            <h2>Sleep Tracker</h2>
+            <p>Enter the number of hours slept per day:</p>
+            <input type="number" id="hoursSlept" step="0.5" placeholder="e.g., 7.5"><br><br>
+            <button onclick="analyzeSleep()">Analyze</button>
+            <p id="recommendation"></p>
+            </b>
+        </div>
+    </div>
+</body>
+</html>
